@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/fine_dust.iml" filepath="$PROJECT_DIR$/.idea/fine_dust.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../lyrics-bot/.idea/lyrics-bot.iml" filepath="$PROJECT_DIR$/../lyrics-bot/.idea/lyrics-bot.iml" />
     </modules>
   </component>
 </project>
