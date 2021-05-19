@@ -93,7 +93,8 @@ def alarm():
     hour = int(clock[0:2])
     minute = int(clock[2:4])
 
-    current = datetime.datetime.today()
+    KST=datetime.timezone(datetime.timedelta(hours=9))
+    current = datetime.datetime(tzinfo=KST).today()
     aim = current.replace(hour=hour, minute=minute, second=00)
 
     gap = (aim - current).total_seconds()
@@ -131,7 +132,7 @@ def user_info(message):
     username_last = message.chat.last_name
     user_message = message.text
 
-    realtime=time.localtime(epochtime)
+    realtime=time.localtime(epochtime+32400)
 
     text = f"""
 USER : {username_first} {username_last}
