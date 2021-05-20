@@ -94,7 +94,8 @@ def alarm():
     minute = int(clock[2:4])
 
     KST=datetime.timezone(datetime.timedelta(hours=9))
-    current = datetime.datetime().now(tz=KST)
+    current = datetime.datetime.now(tz=KST)
+
 
     aim = current.replace(hour=hour, minute=minute, second=00)
 
