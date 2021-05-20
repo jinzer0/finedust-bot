@@ -85,7 +85,7 @@ def set_grade(result):
     return pm10grade, pm25grade
 
 
-def alarm(message):
+def alarm():
     with open("setup.txt", "r") as f:
         clock = f.readlines()
         clock = clock[1]
