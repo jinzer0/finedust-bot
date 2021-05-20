@@ -96,7 +96,6 @@ def alarm():
     KST=datetime.timezone(datetime.timedelta(hours=9))
     current = datetime.datetime.now(tz=KST)
 
-
     aim = current.replace(hour=hour, minute=minute, second=00)
 
     gap = (aim - current).total_seconds()
