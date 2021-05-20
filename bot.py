@@ -17,7 +17,7 @@ def get_dustinfo():
     url = "http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getMsrstnAcctoRltmMesureDnsty?"
     file = open("setup.txt", "r")
     line = file.readline()
-    servicekey = urllib.parse.quote_plus(authkey)
+
     parameter = {
         "serviceKey": "kX4iHZtMYL1MjAo7wyux6wQw9cjY+AiY/bXFbO6DTkGQgoAqoGZSfpkR+RhIi1MlNauj5CJyY1RYPyWHuMf9pQ==",
         "dataTerm": "DAILY",
@@ -85,17 +85,18 @@ def set_grade(result):
     return pm10grade, pm25grade
 
 
-def alarm():
-    with open("setup.txt") as f:
+def alarm(message):
+    with open("setup.txt", "r") as f:
         clock = f.readlines()
         clock = clock[1]
+        if clock =="none":
+            return
 
     hour = int(clock[0:2])
     minute = int(clock[2:4])
 
     KST=datetime.timezone(datetime.timedelta(hours=9))
     current = datetime.datetime.now(tz=KST)
-
 
     aim = current.replace(hour=hour, minute=minute, second=00)
 
@@ -137,11 +138,13 @@ def user_info(message):
     realtime=time.localtime(epochtime+32400)
 
     text = f"""
+--------------------------------------------
 USER : {username_first} {username_last}
 ID : {user_id}
 MESSAGE : {user_message}
 ID_MESSAGE : {message_id}
-DATE : {realtime.tm_year}-{realtime.tm_mon}-{realtime.tm_mday} {realtime.tm_hour}:{realtime.tm_min}:{realtime.tm_sec}"""
+DATE : {realtime.tm_year}-{realtime.tm_mon}-{realtime.tm_mday} {realtime.tm_hour}:{realtime.tm_min}:{realtime.tm_sec}
+--------------------------------------------"""
     print(text)
 
 
@@ -198,8 +201,16 @@ def begin_alert(message):
     bot.send_message(message.chat.id, text)
     while True:
         print("\n\n")
+
         secs = alarm()
+        if secs==None:
+            break
+
         time.sleep(secs)
+
+        secs = alarm()
+        if secs == None:
+            break
 
         result = get_dustinfo()
 
@@ -233,6 +244,21 @@ pre-formatted fixed-width code block
 pre-formatted fixed-width code block written in the Python programming language
 ```"""
     bot.send_message(message.chat.id, text)
+
+
+@bot.message_handler(commands=["halt"])
+def halt(message):
+    with open("setup.txt", "r") as file:
+        lines = file.readlines()
+
+    with open("setup.txt", "w") as file:
+        lines[1]="none"
+        for i in lines:
+            file.write(i)
+
+    bot.send_message(message.chat.id, "알림이 중지되었습니다\.")
+
+
 
 
 bot.enable_save_next_step_handlers(delay=2)
