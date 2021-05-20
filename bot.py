@@ -89,13 +89,13 @@ def alarm(message):
     with open("setup.txt", "r") as f:
         clock = f.readlines()
         clock = clock[1]
-        if clock =="none":
+        if clock == "none":
             return
 
     hour = int(clock[0:2])
     minute = int(clock[2:4])
 
-    KST=datetime.timezone(datetime.timedelta(hours=9))
+    KST = datetime.timezone(datetime.timedelta(hours=9))
     current = datetime.datetime.now(tz=KST)
 
     aim = current.replace(hour=hour, minute=minute, second=00)
@@ -135,7 +135,7 @@ def user_info(message):
     username_last = message.chat.last_name
     user_message = message.text
 
-    realtime=time.localtime(epochtime+32400)
+    realtime = time.localtime(epochtime + 32400)
 
     text = f"""
 --------------------------------------------
@@ -203,7 +203,7 @@ def begin_alert(message):
         print("\n\n")
 
         secs = alarm()
-        if secs==None:
+        if secs == None:
             break
 
         time.sleep(secs)
@@ -213,7 +213,6 @@ def begin_alert(message):
             break
 
         result = get_dustinfo()
-
 
         grade = set_grade(result)
         text = f"""
@@ -252,13 +251,11 @@ def halt(message):
         lines = file.readlines()
 
     with open("setup.txt", "w") as file:
-        lines[1]="none"
+        lines[1] = "none"
         for i in lines:
             file.write(i)
 
     bot.send_message(message.chat.id, "알림이 중지되었습니다\.")
-
-
 
 
 bot.enable_save_next_step_handlers(delay=2)
