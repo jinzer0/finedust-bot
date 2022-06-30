@@ -1,8 +1,12 @@
 from telegram.ext import Updater, CommandHandler, Filters, MessageHandler
 import telegram.update
 import logging
+import os
+from dotenv import load_dotenv
 
-token = "1748668208:AAEAiTfvMkVCu6gB2nqYQjb08N7r0AraFrE"
+load_dotenv()
+
+token = os.getenv("TOKEN")
 
 updater = Updater(token=token, use_context=True)
 dispatch = updater.dispatcher

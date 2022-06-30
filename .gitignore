@@ -4,3 +4,4 @@ notice.py
 dis.py
 .handler-saves
 .idea/
+.env

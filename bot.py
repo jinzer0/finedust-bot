@@ -4,10 +4,16 @@ import requests as r
 import datetime
 import time
 import urllib.parse
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+token = os.getenv("TOKEN")
 
 chatid = 1516844869
 logging.basicConfig(format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO)
-token = "1748668208:AAEAiTfvMkVCu6gB2nqYQjb08N7r0AraFrE"
+
 
 bot = telebot.TeleBot(token, parse_mode="MarkdownV2")
 

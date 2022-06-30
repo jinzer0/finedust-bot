@@ -1,8 +1,12 @@
 import discord
 import requests as r
+import os
+from dotenv import load_dotenv
 
-bot_token = "ODMzMzI1Nzg2MDMwOTMxOTk4.YHwtHQ.-TX22bkSei3Edf2HwQWAso5PB1I"
-bot_clientID = "816942343214465066"
+load_dotenv()
+
+bot_token = os.getenv("BOT_TOKEN")
+bot_clientID = os.getenv("BOT_ID")
 
 
 class MyClient(discord.Client):
