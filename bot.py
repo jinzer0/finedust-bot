@@ -9,7 +9,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# TODO: SECURITY RISK - Ensure TOKEN environment variable is kept secret and never committed to version control
 token = os.getenv("TOKEN")
 
 # TODO: SECURITY RISK - Hardcoded chat ID should be moved to environment variable or configuration file
