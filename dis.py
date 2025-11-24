@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# TODO: SECURITY RISK - Ensure BOT_TOKEN and BOT_ID environment variables are kept secret and never committed to version control
 bot_token = os.getenv("BOT_TOKEN")
 bot_clientID = os.getenv("BOT_ID")
 

@@ -9,8 +9,10 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# TODO: SECURITY RISK - Ensure TOKEN environment variable is kept secret and never committed to version control
 token = os.getenv("TOKEN")
 
+# TODO: SECURITY RISK - Hardcoded chat ID should be moved to environment variable or configuration file
 chatid = 1516844869
 logging.basicConfig(format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO)
 
@@ -19,11 +21,13 @@ bot = telebot.TeleBot(token, parse_mode="MarkdownV2")
 
 
 def get_dustinfo():
+    # TODO: SECURITY RISK - Hardcoded API key exposed in source code! Move to environment variable (.env file)
     authkey = "kX4iHZtMYL1MjAo7wyux6wQw9cjY+AiY/bXFbO6DTkGQgoAqoGZSfpkR+RhIi1MlNauj5CJyY1RYPyWHuMf9pQ=="
     url = "http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getMsrstnAcctoRltmMesureDnsty?"
     file = open("setup.txt", "r")
     line = file.readline()
 
+    # TODO: SECURITY RISK - Hardcoded API key exposed in source code! Move to environment variable (.env file)
     parameter = {
         "serviceKey": "kX4iHZtMYL1MjAo7wyux6wQw9cjY+AiY/bXFbO6DTkGQgoAqoGZSfpkR+RhIi1MlNauj5CJyY1RYPyWHuMf9pQ==",
         "dataTerm": "DAILY",
